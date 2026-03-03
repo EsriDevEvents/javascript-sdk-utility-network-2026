@@ -9,3 +9,19 @@ Most of the slides are made available at [Esri Events > Proceedings](https://www
 ## Related sessions
 
 ...
+
+## Getting started
+
+1. Install the dependencies:
+
+   ```sh
+   npm install
+   ```
+
+2. Run the Vite dev server:
+
+   ```sh
+   npm run dev
+   ```
+
+3. Access the dev server by navigating to `http://localhost:5173/`.
