@@ -25,3 +25,17 @@ Most of the slides are made available at [Esri Events > Proceedings](https://www
    ```
 
 3. Access the dev server by navigating to `http://localhost:5173/`.
+
+## Configuration
+
+Specify an enterprise portal as `esriConfig.portalUrl` in `main.tsx`:
+
+```ts
+esriConfig.portalUrl = "https://myHostName.esri.com/arcgis";
+```
+
+Update the `id` property on the `App` component in `main.tsx` with your own map ID:
+
+```tsx
+<App webmapId={"map-id-goes-here"}></App>
+```
