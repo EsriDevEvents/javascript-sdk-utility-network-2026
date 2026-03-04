@@ -97,7 +97,11 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
 
   return (
     <calcite-shell content-behind>
-      <arcgis-map item-id={webmapId}>{renderActiveTool(activeTool)}</arcgis-map>
+      <arcgis-map item-id={webmapId}>
+        <arcgis-zoom slot="bottom-right"></arcgis-zoom>
+        {renderActiveTool(activeTool)}
+      </arcgis-map>
+
       <calcite-shell-panel slot="panel-start" display-mode="float-content">
         <calcite-action-bar slot="action-bar">
           <calcite-action
