@@ -17,6 +17,10 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
   const [isEditing, setIsEditing] = useState(false);
   const [versioningState, setVersioningState] = useState<VersioningState | undefined>(undefined);
 
+  // Used to display loading icon for edit actions
+  const [isStartingSession, setIsStarting] = useState(false);
+  const [isStoppingSession, setIsStopping] = useState(false);
+
   useEffect(() => {
     if (activeTool !== "versionManagement") {
       return;
@@ -38,6 +42,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
       return;
     }
 
+    setIsStarting(true);
     try {
       const result = await versioningState?.startEditing();
       if (result?.success) {
@@ -48,6 +53,8 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
       }
     } catch (error) {
       alert(String(error));
+    } finally {
+      setIsStarting(false);
     }
   };
 
@@ -57,6 +64,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
       return;
     }
 
+    setIsStopping(true);
     try {
       const result = await versioningState?.stopEditing(true);
       if (result?.success) {
@@ -67,6 +75,8 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
       }
     } catch (error) {
       alert(String(error));
+    } finally {
+      setIsStopping(false);
     }
   };
 
@@ -118,9 +128,16 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
             onClick={startEditing}
             icon="edit-geometry"
             text="Start editing"
-            disabled={isEditing || !versioningState}
+            disabled={isEditing || !versioningState || isStartingSession}
+            loading={isStartingSession}
           />
-          <calcite-action onClick={saveEdits} icon="save-as" text="Stop editing" disabled={!isEditing} />
+          <calcite-action
+            onClick={saveEdits}
+            icon="save-as"
+            text="Stop editing"
+            disabled={!isEditing || isStoppingSession}
+            loading={isStoppingSession}
+          />
           <calcite-action onClick={undo} icon="undo" text="Undo" disabled={!isEditing} />
           <calcite-action onClick={redo} icon="redo" text="Redo" disabled={!isEditing} />
         </calcite-action-bar>
