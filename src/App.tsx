@@ -8,14 +8,7 @@ import "@esri/calcite-components/components/calcite-shell-panel";
 
 import { useEffect, useState } from "react";
 
-export type ActiveTool =
-  | "validateTopology"
-  | "versionManagement"
-  | "trace"
-  | "traceAnalysis"
-  | "editor"
-  | "associations"
-  | null;
+type ActiveTool = "validateTopology" | "versionManagement" | "trace" | "editor" | "associations" | null;
 
 type AppProps = { webmapId: string };
 
@@ -116,11 +109,6 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
           />
           <calcite-action onClick={() => setActiveTool("trace")} icon="utility-network-trace" text="Trace" />
           <calcite-action
-            onClick={() => setActiveTool("traceAnalysis")}
-            icon="geometric-network"
-            text="Trace Analysis"
-          />
-          <calcite-action
             onClick={() => setActiveTool("associations")}
             icon="view-associations"
             text="View Associations"
@@ -150,8 +138,6 @@ function renderActiveTool(toolName: ActiveTool): React.JSX.Element | null {
     case "versionManagement":
       return <arcgis-version-management slot={slot}></arcgis-version-management>;
     case "trace":
-      return <arcgis-utility-network-trace slot={slot}></arcgis-utility-network-trace>;
-    case "traceAnalysis":
       return <arcgis-utility-network-trace-analysis slot={slot}></arcgis-utility-network-trace-analysis>;
     case "associations":
       return <arcgis-utility-network-associations slot={slot}></arcgis-utility-network-associations>;
