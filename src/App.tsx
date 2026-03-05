@@ -1,6 +1,14 @@
 import { whenOnce } from "@arcgis/core/core/reactiveUtils.js";
 import VersioningState from "@arcgis/core/versionManagement/VersioningState.js";
 
+import "@arcgis/map-components/components/arcgis-editor";
+import "@arcgis/map-components/components/arcgis-map";
+import "@arcgis/map-components/components/arcgis-utility-network-associations";
+import "@arcgis/map-components/components/arcgis-utility-network-trace-analysis";
+import "@arcgis/map-components/components/arcgis-utility-network-validate-topology";
+import "@arcgis/map-components/components/arcgis-version-management";
+import "@arcgis/map-components/components/arcgis-zoom";
+
 import "@esri/calcite-components/components/calcite-action";
 import "@esri/calcite-components/components/calcite-action-bar";
 import "@esri/calcite-components/components/calcite-shell";
