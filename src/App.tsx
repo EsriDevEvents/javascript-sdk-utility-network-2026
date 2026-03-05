@@ -128,7 +128,6 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
           <calcite-action onClick={() => setActiveTool("editor")} icon="pencil-square" text="Editor" />
           <calcite-action
             onClick={startEditing}
-            id="start-edit-action"
             icon="edit-geometry"
             text="Start editing"
             disabled={isEditing || !versioningState}
