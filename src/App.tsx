@@ -32,6 +32,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
   // Used for start/stop edit session, and undo/redo
   const [versioningState, setVersioningState] = useState<VersioningState | undefined>(undefined);
 
+  // If user opens Version Management component, get component's `VersioningState`
   useEffect(() => {
     if (activeTool !== "versionManagement") {
       return;
@@ -47,6 +48,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
     );
   }, [activeTool]);
 
+  // "Start edit session" callback
   const startEditing = async (): Promise<void> => {
     if (versioningState?.isDefault) {
       alert("Cannot perform edits on default version.");
@@ -69,6 +71,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
     }
   };
 
+  // "Stop edit session" callback
   const saveEdits = async (): Promise<void> => {
     if (versioningState?.isDefault) {
       alert("Cannot perform edits on default version.");
@@ -91,6 +94,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
     }
   };
 
+  // "Undo edit" callback
   const undo = async (): Promise<void> => {
     if (versioningState?.isDefault) {
       alert("Cannot perform edits on default version.");
@@ -100,6 +104,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
     await versioningState?.undo();
   };
 
+  // "Redo edit" callback
   const redo = async (): Promise<void> => {
     if (versioningState?.isDefault) {
       alert("Cannot perform edits on default version.");
