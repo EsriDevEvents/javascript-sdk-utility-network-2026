@@ -123,6 +123,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
 
       <calcite-shell-panel slot="panel-start" display-mode="float-content">
         <calcite-action-bar slot="action-bar">
+          {/* Component buttons */}
           <calcite-action
             onClick={() => setActiveTool("versionManagement")}
             icon="code-branch"
@@ -140,6 +141,8 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
             text="View Associations"
           />
           <calcite-action onClick={() => setActiveTool("editor")} icon="pencil-square" text="Editor" />
+
+          {/* Edit buttons */}
           <calcite-action
             onClick={startEditing}
             icon="edit-geometry"
