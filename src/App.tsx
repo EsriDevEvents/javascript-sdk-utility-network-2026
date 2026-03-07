@@ -21,13 +21,16 @@ type ActiveTool = "validateTopology" | "versionManagement" | "trace" | "editor" 
 type AppProps = { webmapId: string };
 
 export default function App({ webmapId }: AppProps): React.JSX.Element {
+  // Used to render the correct component
   const [activeTool, setActiveTool] = useState<ActiveTool>(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [versioningState, setVersioningState] = useState<VersioningState | undefined>(undefined);
 
-  // Used to display loading icon for edit actions
+  // Used to change button appearance
+  const [isEditing, setIsEditing] = useState(false);
   const [isStartingSession, setIsStarting] = useState(false);
   const [isStoppingSession, setIsStopping] = useState(false);
+
+  // Used for start/stop edit session, and undo/redo
+  const [versioningState, setVersioningState] = useState<VersioningState | undefined>(undefined);
 
   useEffect(() => {
     if (activeTool !== "versionManagement") {
