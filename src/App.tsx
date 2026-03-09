@@ -11,6 +11,7 @@ import "@arcgis/map-components/components/arcgis-zoom";
 
 import "@esri/calcite-components/components/calcite-action";
 import "@esri/calcite-components/components/calcite-action-bar";
+import "@esri/calcite-components/components/calcite-action-group";
 import "@esri/calcite-components/components/calcite-shell";
 import "@esri/calcite-components/components/calcite-shell-panel";
 
@@ -123,42 +124,43 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
 
       <calcite-shell-panel slot="panel-start" display-mode="float-content">
         <calcite-action-bar slot="action-bar">
-          {/* Component buttons */}
-          <calcite-action
-            onClick={() => setActiveTool("versionManagement")}
-            icon="code-branch"
-            text="Version Management"
-          />
-          <calcite-action
-            onClick={() => setActiveTool("validateTopology")}
-            icon="validate-utility-network-topology"
-            text="Validate Topology"
-          />
-          <calcite-action onClick={() => setActiveTool("trace")} icon="utility-network-trace" text="Trace" />
-          <calcite-action
-            onClick={() => setActiveTool("associations")}
-            icon="view-associations"
-            text="View Associations"
-          />
-          <calcite-action onClick={() => setActiveTool("editor")} icon="pencil-square" text="Editor" />
-
-          {/* Edit buttons */}
-          <calcite-action
-            onClick={startEditing}
-            icon="edit-geometry"
-            text="Start editing"
-            disabled={isEditing || !versioningState || isStartingSession}
-            loading={isStartingSession}
-          />
-          <calcite-action
-            onClick={saveEdits}
-            icon="save-as"
-            text="Stop editing"
-            disabled={!isEditing || isStoppingSession}
-            loading={isStoppingSession}
-          />
-          <calcite-action onClick={undo} icon="undo" text="Undo" disabled={!isEditing} />
-          <calcite-action onClick={redo} icon="redo" text="Redo" disabled={!isEditing} />
+          <calcite-action-group label="Components">
+            <calcite-action
+              onClick={() => setActiveTool("versionManagement")}
+              icon="code-branch"
+              text="Version Management"
+            />
+            <calcite-action
+              onClick={() => setActiveTool("validateTopology")}
+              icon="validate-utility-network-topology"
+              text="Validate Topology"
+            />
+            <calcite-action onClick={() => setActiveTool("trace")} icon="utility-network-trace" text="Trace" />
+            <calcite-action
+              onClick={() => setActiveTool("associations")}
+              icon="view-associations"
+              text="View Associations"
+            />
+            <calcite-action onClick={() => setActiveTool("editor")} icon="pencil-square" text="Editor" />
+          </calcite-action-group>
+          <calcite-action-group label="Editing">
+            <calcite-action
+              onClick={startEditing}
+              icon="edit-geometry"
+              text="Start editing"
+              disabled={isEditing || !versioningState || isStartingSession}
+              loading={isStartingSession}
+            />
+            <calcite-action
+              onClick={saveEdits}
+              icon="save-as"
+              text="Stop editing"
+              disabled={!isEditing || isStoppingSession}
+              loading={isStoppingSession}
+            />
+            <calcite-action onClick={undo} icon="undo" text="Undo" disabled={!isEditing} />
+            <calcite-action onClick={redo} icon="redo" text="Redo" disabled={!isEditing} />
+          </calcite-action-group>
         </calcite-action-bar>
       </calcite-shell-panel>
     </calcite-shell>
