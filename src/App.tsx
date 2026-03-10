@@ -73,7 +73,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
   };
 
   // "Stop edit session" callback
-  const saveEdits = async (): Promise<void> => {
+  const stopEditing = async (): Promise<void> => {
     if (versioningState?.isDefault) {
       alert("Cannot perform edits on default version.");
       return;
@@ -152,7 +152,7 @@ export default function App({ webmapId }: AppProps): React.JSX.Element {
               loading={isStartingSession}
             />
             <calcite-action
-              onClick={saveEdits}
+              onClick={stopEditing}
               icon="save-as"
               text="Stop editing"
               disabled={!isEditing || isStoppingSession}
